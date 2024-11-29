@@ -1,0 +1,44 @@
+clc;
+close all;
+clear all;
+
+% Parameters
+n = 10;                             % Number of bits
+b = [1 0 1 0 1 1 1 0 0 0];          % Binary data
+f = 5;                              % Carrier frequency
+t = 0:1/100:1-1/100;                % Time vector for one bit duration
+
+% Carrier Signals
+carrier = sin(2 * pi * f * t);      % Carrier signal
+null_signal = zeros(size(t));       % Signal for bit 0 (no carrier)
+
+% ASK Modulation
+ask = [];
+for i = 1:n
+    if b(i) == 1
+        ask = [ask carrier];        % Add carrier for bit 1
+    else
+        ask = [ask null_signal];    % Add zero signal for bit 0
+    end
+end
+
+% Plotting
+figure;
+
+% Message Plot
+subplot(2, 1, 1);
+stairs([0:n-1], b, 'LineWidth', 1.5);  % Message as a step plot
+axis([0 n -0.5 1.5]);
+title('Message Signal');
+xlabel('Bit Index');
+ylabel('Amplitude');
+grid on;
+
+% ASK Signal Plot
+tb = 0:1/100:(length(ask)-1)/100;  % Time vector for ASK signal
+subplot(2, 1, 2);
+plot(tb, ask, 'LineWidth', 1.5);
+title('ASK Modulated Signal');
+xlabel('Time');
+ylabel('Amplitude');
+grid on;
