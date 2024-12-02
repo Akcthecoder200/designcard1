@@ -1,0 +1,36 @@
+#define RED_LED 8    // Pin for the Red LED
+#define YELLOW_LED 9 // Pin for the Yellow LED
+#define GREEN_LED 10 // Pin for the Green LED
+
+void setup() {
+  // Set LED pins as OUTPUT
+  pinMode(RED_LED, OUTPUT);
+  pinMode(YELLOW_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+}
+
+void loop() {
+  // Red Light ON (Stop)
+  digitalWrite(RED_LED, HIGH);
+  digitalWrite(YELLOW_LED, LOW);
+  digitalWrite(GREEN_LED, LOW);
+  delay(5000); // Wait for 5 seconds
+
+  // Yellow Light ON (Ready to go)
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(YELLOW_LED, HIGH);
+  digitalWrite(GREEN_LED, LOW);
+  delay(2000); // Wait for 2 seconds
+
+  // Green Light ON (Go)
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(YELLOW_LED, LOW);
+  digitalWrite(GREEN_LED, HIGH);
+  delay(5000); // Wait for 5 seconds
+
+  // Yellow Light ON (Ready to stop)
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(YELLOW_LED, HIGH);
+  digitalWrite(GREEN_LED, LOW);
+  delay(2000); // Wait for 2 seconds
+}
