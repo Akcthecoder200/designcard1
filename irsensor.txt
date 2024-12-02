@@ -1,0 +1,21 @@
+#define IR_SENSOR_PIN 7 // Define the digital pin connected to the IR sensor
+
+void setup() {
+  pinMode(IR_SENSOR_PIN, INPUT); // Set IR sensor pin as input
+  Serial.begin(9600);            // Start the serial communication
+  Serial.println("IR Sensor Test: Waiting for object...");
+}
+
+void loop() {
+  int sensorValue = digitalRead(IR_SENSOR_PIN); // Read the sensor output
+
+  if (sensorValue == LOW) {
+    // Object detected (Output is LOW when an obstacle is detected)
+    Serial.println("Object Detected!");
+  } else {
+    // No object detected (Output is HIGH when no obstacle is present)
+    Serial.println("No Object.");
+  }
+
+  delay(500); // Wait for 500ms before the next reading
+}

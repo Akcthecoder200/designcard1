@@ -1,0 +1,51 @@
+// Define the Arduino pins connected to the 7-segment display
+#define SEG_A 2
+#define SEG_B 3
+#define SEG_C 4
+#define SEG_D 5
+#define SEG_E 6
+#define SEG_F 7
+#define SEG_G 8
+
+// Array to hold the segment configurations for digits 0-9
+const int digitPatterns[10][7] = {
+  {1, 1, 1, 1, 1, 1, 0}, // 0
+  {0, 1, 1, 0, 0, 0, 0}, // 1
+  {1, 1, 0, 1, 1, 0, 1}, // 2
+  {1, 1, 1, 1, 0, 0, 1}, // 3
+  {0, 1, 1, 0, 0, 1, 1}, // 4
+  {1, 0, 1, 1, 0, 1, 1}, // 5
+  {1, 0, 1, 1, 1, 1, 1}, // 6
+  {1, 1, 1, 0, 0, 0, 0}, // 7
+  {1, 1, 1, 1, 1, 1, 1}, // 8
+  {1, 1, 1, 1, 0, 1, 1}  // 9
+};
+
+void setup() {
+  // Set the segment pins as output
+  pinMode(SEG_A, OUTPUT);
+  pinMode(SEG_B, OUTPUT);
+  pinMode(SEG_C, OUTPUT);
+  pinMode(SEG_D, OUTPUT);
+  pinMode(SEG_E, OUTPUT);
+  pinMode(SEG_F, OUTPUT);
+  pinMode(SEG_G, OUTPUT);
+}
+
+void loop() {
+  for (int digit = 0; digit <= 9; digit++) { // Loop through digits 0-9
+    displayDigit(digit);                    // Display the current digit
+    delay(1000);                            // Wait 1 second
+  }
+}
+
+void displayDigit(int digit) {
+  // Loop through each segment and set it based on the digit pattern
+  digitalWrite(SEG_A, digitPatterns[digit][0]);
+  digitalWrite(SEG_B, digitPatterns[digit][1]);
+  digitalWrite(SEG_C, digitPatterns[digit][2]);
+  digitalWrite(SEG_D, digitPatterns[digit][3]);
+  digitalWrite(SEG_E, digitPatterns[digit][4]);
+  digitalWrite(SEG_F, digitPatterns[digit][5]);
+  digitalWrite(SEG_G, digitPatterns[digit][6]);
+}

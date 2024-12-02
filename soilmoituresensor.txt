@@ -1,0 +1,26 @@
+#define MOISTURE_PIN A0 // Analog pin connected to the sensor
+
+void setup() {
+  Serial.begin(9600); // Start serial communication
+  Serial.println("Soil Moisture Sensor Test");
+}
+
+void loop() {
+  // Read the analog value from the soil moisture sensor
+  int moistureValue = analogRead(MOISTURE_PIN);
+
+  // Print the moisture value to the Serial Monitor
+  Serial.print("Soil Moisture Level: ");
+  Serial.println(moistureValue);
+
+  // Determine moisture condition (optional)
+  if (moistureValue > 700) {
+    Serial.println("Status: Dry Soil");
+  } else if (moistureValue > 300) {
+    Serial.println("Status: Moist Soil");
+  } else {
+    Serial.println("Status: Wet Soil");
+  }
+
+  delay(1000); // Wait 1 second before the next reading
+}
